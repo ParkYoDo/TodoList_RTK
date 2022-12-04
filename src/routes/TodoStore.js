@@ -1,4 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage/session';
+import { combineReducers } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
 
 const users = createSlice({
   name: 'users',
@@ -33,10 +36,10 @@ const isLogin = createSlice({
   initialState: false,
   reducers: {
     isLoginTrue(state) {
-      return state;
+      return (state = true);
     },
     isLoginFalse(state) {
-      return state;
+      return (state = false);
     },
   },
 });
@@ -122,13 +125,24 @@ const todos = createSlice({
   },
 });
 
+const reducers = combineReducers({
+  users: users.reducer,
+  isLogin: isLogin.reducer,
+  loginUser: loginUser.reducer,
+  todos: todos.reducer,
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['todos', 'users'],
+  whitelist: ['isLogin', 'loginUser'],
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
 export default configureStore({
-  reducer: {
-    users: users.reducer,
-    isLogin: isLogin.reducer,
-    loginUser: loginUser.reducer,
-    todos: todos.reducer,
-  },
+  reducer: persistedReducer,
 });
 
 export const { userAdd, userModify } = users.actions;
