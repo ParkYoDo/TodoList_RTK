@@ -1,7 +1,14 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage/session';
-import { combineReducers } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
 const users = createSlice({
   name: 'users',
@@ -126,16 +133,17 @@ const todos = createSlice({
 });
 
 const reducers = combineReducers({
-  users: users.reducer,
+  //   users: users.reducer,
   isLogin: isLogin.reducer,
-  loginUser: loginUser.reducer,
-  todos: todos.reducer,
+  //   loginUser: loginUser.reducer,
+  //   todos: todos.reducer,
 });
 
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
-  blacklist: ['todos', 'users'],
+  blacklist: ['users', 'todos'],
   whitelist: ['isLogin', 'loginUser'],
 };
 
@@ -143,6 +151,12 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 export default configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const { userAdd, userModify } = users.actions;
@@ -154,3 +168,8 @@ export const { todoRemove, todoToggle, todoCreate, todoModify } = todos.actions;
 // import {useDispatch} from 'react-redux'
 // import {changeName } from './../store.js'
 // let a = useSelector ((state)=> {state.user})
+// {
+//   /* <button onClick={()=>{
+//   dispatch(changeName())
+// }}>버튼임</button>  */
+// }

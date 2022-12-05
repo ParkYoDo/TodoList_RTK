@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(TodoStore);
 root.render(
   <React.StrictMode>
-    <Provider TodoStore={TodoStore}>
+    <Provider store={TodoStore}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <App />
