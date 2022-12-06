@@ -30,10 +30,14 @@ const users = createSlice({
   ],
   reducers: {
     userAdd(state, action) {
-      state += action.payload;
+      return [...state, action.payload];
     },
-    userModify(state) {
-      return state;
+    userModify(state, action) {
+      return state.map((user) =>
+        user.id === action.payload.loginUser.id
+          ? { ...user, [action.payload.key]: action.payload.value }
+          : user,
+      );
     },
   },
 });
@@ -61,11 +65,11 @@ const loginUser = createSlice({
     phone: '',
   },
   reducers: {
-    loginUserSet(state) {
-      return state;
+    loginUserSet(state, action) {
+      return { ...action.payload };
     },
-    loginUserModify(state) {
-      return state;
+    loginUserModify(state, action) {
+      return { ...state, [action.payload.key]: action.payload.value };
     },
   },
 });
@@ -117,34 +121,42 @@ const todos = createSlice({
     },
   ],
   reducers: {
-    todoRemove(state) {
-      return state;
+    todoRemove(state, action) {
+      return state.filter((todo) => todo.id !== parseInt(action.payload));
     },
-    todoToggle(state) {
-      return state;
+    todoToggle(state, action) {
+      return state.map((todo) =>
+        todo.id === parseInt(action.payload)
+          ? { ...todo, done: !todo.done }
+          : todo,
+      );
     },
-    todoCreate(state) {
-      return state;
+    todoCreate(state, action) {
+      return [...state, action.payload];
     },
-    todoModify(state) {
-      return state;
+    todoModify(state, action) {
+      return state.map((todo) =>
+        todo.writer === action.payload.loginUser.name
+          ? { ...todo, writer: action.payload.writer }
+          : todo,
+      );
     },
   },
 });
 
 const reducers = combineReducers({
-  //   users: users.reducer,
+  users: users.reducer,
   isLogin: isLogin.reducer,
-  //   loginUser: loginUser.reducer,
-  //   todos: todos.reducer,
+  loginUser: loginUser.reducer,
+  todos: todos.reducer,
 });
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: ['users', 'todos'],
-  whitelist: ['isLogin', 'loginUser'],
+  blacklist: ['users', 'todos', 'isLogin', 'loginUser'],
+  // whitelist: ['isLogin', 'loginUser', 'users', 'todos'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -163,13 +175,3 @@ export const { userAdd, userModify } = users.actions;
 export const { isLoginTrue, isLoginFalse } = isLogin.actions;
 export const { loginUserSet, loginUserModify } = loginUser.actions;
 export const { todoRemove, todoToggle, todoCreate, todoModify } = todos.actions;
-
-// import {useSelector} from 'react-redux'
-// import {useDispatch} from 'react-redux'
-// import {changeName } from './../store.js'
-// let a = useSelector ((state)=> {state.user})
-// {
-//   /* <button onClick={()=>{
-//   dispatch(changeName())
-// }}>버튼임</button>  */
-// }
