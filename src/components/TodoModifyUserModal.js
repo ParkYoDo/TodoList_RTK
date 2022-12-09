@@ -89,7 +89,10 @@ function TodoModifyUserModal({ show, setShow }) {
     <>
       <Modal show={show.open} onHide={closeModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title
+            id="contained-modal-title-vcenter"
+            style={{ fontSize: '2.5vh' }}
+          >
             변경 할 {show.name} 입력하세요!
           </Modal.Title>
         </Modal.Header>
@@ -101,14 +104,23 @@ function TodoModifyUserModal({ show, setShow }) {
             value={input}
             onChange={onChange}
             onKeyDown={onKeyDown}
+            style={{ fontSize: '2vh' }}
             maxLength={show.name === 'phone' ? '13' : '30'}
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
+          <Button
+            style={{ fontSize: '2vh' }}
+            variant="secondary"
+            onClick={closeModal}
+          >
             Close
           </Button>
-          <Button variant="primary" onClick={modifyUser}>
+          <Button
+            style={{ fontSize: '2vh' }}
+            variant="primary"
+            onClick={modifyUser}
+          >
             Save Change
           </Button>
         </Modal.Footer>
