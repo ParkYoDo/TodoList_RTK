@@ -5,10 +5,9 @@ import { Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 const TodoListBlock = styled.div`
-  padding: 30px 20px;
+  padding: 1vh 2vh;
   overflow-y: auto;
   height: 100%;
-
   ${(props) =>
     !props.isLogin &&
     css`
@@ -17,11 +16,9 @@ const TodoListBlock = styled.div`
       align-items: center;
     `}
 
-  /* flex: 1; */
-
   .mainText {
     text-align: center;
-    font-size: 40px;
+    font-size: 4.7vw;
     color: #20c997;
   }
 `;
@@ -30,6 +27,7 @@ function TodoList() {
   const todos = useSelector((state) => state.todos);
   const isLogin = useSelector((state) => state.isLogin);
   const loginUser = useSelector((state) => state.loginUser);
+
   return (
     <TodoListBlock isLogin={isLogin}>
       <Container>

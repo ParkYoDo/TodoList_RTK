@@ -27,20 +27,20 @@ const CheckBtn = styled.div`
 
 const Icons = styled.div`
   position: absolute;
-  font-size: 20px;
-  right: 10px;
-  top: 3px;
+  font-size: 3vw;
+  right: 1vw;
+  top: 0.1vw;
   cursor: pointer;
   display: none;
 `;
 
 const TodoItemBlock = styled.div`
-  padding: 12px 0px;
+  padding: 1vw 0px;
 `;
 
 const PostIt = styled.div`
   background-color: #fef3bf;
-  padding: 16px;
+  padding: 1.2vw;
   border-radius: 8px;
   position: relative;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
@@ -49,11 +49,18 @@ const PostIt = styled.div`
       display: flex;
     }
   }
-  h5,
-  p {
+  .title {
     text-align: center;
     margin: 8px 0px;
     border-bottom: 1px solid red;
+    font-size: 2.5vw;
+    font-weight: 600;
+  }
+  .content {
+    text-align: center;
+    margin: 8px 0px;
+    border-bottom: 1px solid red;
+    font-size: 2vw;
   }
   ${(props) =>
     props.done &&
@@ -61,8 +68,8 @@ const PostIt = styled.div`
       background-color: #ced4da;
       color: black;
       text-decoration: line-through 1px solid red;
-      h5,
-      p {
+      .title,
+      .content {
         border-bottom: 1px solid black;
       }
     `}
@@ -78,7 +85,7 @@ function TodoItem({ id, title, content, done }) {
   };
   return (
     <>
-      <Col sm="6">
+      <Col xs="6">
         <TodoItemBlock>
           <PostIt done={done}>
             <Icons>
@@ -93,8 +100,8 @@ function TodoItem({ id, title, content, done }) {
                 <BiXCircle onClick={removeTodo} data-id={id} />
               </RemoveBtn>
             </Icons>
-            <h5>{title}</h5>
-            <p>{content}</p>
+            <div className="title">{title}</div>
+            <div className="content">{content}</div>
           </PostIt>
         </TodoItemBlock>
       </Col>

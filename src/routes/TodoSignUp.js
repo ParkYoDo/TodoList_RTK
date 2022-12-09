@@ -27,21 +27,27 @@ const LoginBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+
+  h1 {
+    font-size: 4vw;
+  }
 
   Button {
-    margin: 10px;
-    padding: 8px 12px;
-    margin-top: 18px;
+    margin: 1vw;
+    padding: 1vw;
+    margin-top: 2vw;
+    font-size: 1.5vw;
   }
 `;
 
 const Input = styled.input`
   margin: 10px;
-  padding: 18px;
-  width: 70%;
+  padding: 1vw;
+  width: 100%;
 
   text-align: center;
-  font-size: 1rem;
+  font-size: 1vw;
   border-radius: 5px;
   border: 2px solid skyblue;
 `;

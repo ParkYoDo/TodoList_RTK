@@ -7,14 +7,14 @@ import { todoCreate } from './TodoStore';
 const Input = styled.input`
   border-radius: 4px;
   border: 1px solid #1cb1f5;
-  font-size: 18px;
+  font-size: 1vh;
   text-align: center;
-  margin: 12px;
-  padding: 4px;
+  margin: 0 1vh;
+  padding: 0.5vh;
 `;
 
 const InsertForm = styled.form`
-  padding: 40px;
+  padding: 5vh;
   border-radius: 16px;
   bottom: 0;
   left: 0;
@@ -34,9 +34,9 @@ const AddButton = styled.button`
     background: #20c997;
   }
   cursor: pointer;
-  width: 80px;
-  height: 80px;
-  font-size: 60px;
+  width: 8vh;
+  height: 8vh;
+  font-size: 6vh;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -72,7 +72,6 @@ const AddButton = styled.button`
 function TodoCreate() {
   const isLogin = useSelector((state) => state.isLogin);
   const loginUser = useSelector((state) => state.loginUser);
-  const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
   const nextTodoId = useRef(6);

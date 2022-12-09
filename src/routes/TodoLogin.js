@@ -29,13 +29,14 @@ const LoginBlock = styled.div`
   align-items: center;
 
   h1 {
-    margin-top: 20px;
+    font-size: 4vw;
   }
 
   Button {
-    margin: 16px;
-    padding: 12px 25px;
-    margin-top: 20px;
+    margin: 1vw;
+    padding: 1vw;
+    margin-top: 2vw;
+    font-size: 1.5vw;
   }
 `;
 
@@ -45,12 +46,12 @@ const RowBlock = styled.div`
 `;
 
 const Input = styled.input`
-  margin: 20px;
-  padding: 18px;
-  width: 70%;
+  margin: 10px;
+  padding: 1vw;
+  width: 100%;
 
   text-align: center;
-  font-size: 1rem;
+  font-size: 1vw;
   border-radius: 5px;
   border: 2px solid skyblue;
 `;

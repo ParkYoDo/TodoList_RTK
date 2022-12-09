@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TodoTemplateBlock = styled.div`
-  width: 512px;
-  height: 768px;
-  margin: 100px auto;
+  width: 70vw;
+  max-width: 700px;
+  height: 70vh;
+  min-height: 300px;
+  margin: 10vh auto;
 
   background-color: white;
   border-radius: 16px;

@@ -8,18 +8,18 @@ import { isLoginFalse } from './TodoStore';
 
 const Navbar = styled.div`
   background-color: #546e7a;
-  padding: 16px 20px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  width: 100%;
   a {
     text-decoration: none;
     color: white;
     border-radius: 8px;
-    padding: 12px;
-    &:hover {
+    / &:hover {
       background-color: #607d8b;
     }
     &:active {
@@ -29,13 +29,16 @@ const Navbar = styled.div`
 `;
 
 const NavLogo = styled.div`
-  a {
-    font-size: 24px;
+  button {
+    font-size: 1.5vh;
+    font-weight: 600;
   }
 `;
 const NavMenu = styled.div`
+  display: flex;
+  flex-direction: row;
   button {
-    font-size: 16px;
+    font-size: 1vh;
   }
 `;
 
@@ -51,8 +54,10 @@ function TodoNav() {
       <Navbar>
         <NavLogo>
           <Link to="/">
-            <TfiWrite style={{ marginRight: '12px', fontSize: '24px' }} />
-            To Do List :)
+            <Button color="inherit">
+              <TfiWrite style={{ fontSize: '12px', marginRight: '3px' }} />
+              ToDo-List
+            </Button>
           </Link>
         </NavLogo>
         <NavMenu>
