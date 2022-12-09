@@ -155,8 +155,8 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: ['users', 'todos', 'isLogin', 'loginUser'],
-  // whitelist: ['isLogin', 'loginUser', 'users', 'todos'],
+  // blacklist: ['users', 'todos', 'isLogin', 'loginUser'],
+  whitelist: ['isLogin', 'loginUser', 'todos', 'users'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

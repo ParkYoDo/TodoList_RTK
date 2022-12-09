@@ -146,7 +146,6 @@ function TodoSignUp() {
       });
       nextUserId.current += 1;
       navigate('/');
-      e.preventDefault();
     }
   };
 
@@ -169,10 +168,6 @@ function TodoSignUp() {
   useEffect(() => {
     nameInput.current.focus();
   }, []);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
 
   return (
     <>
