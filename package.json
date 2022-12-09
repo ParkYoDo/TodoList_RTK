@@ -50,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://ParkYoDo.github.io",
+  "homepage": "https://ParkYoDo.github.io/TodoList_RTK",
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }
