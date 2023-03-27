@@ -1,46 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './TodoNavStyle';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { TfiWrite } from 'react-icons/tfi';
 import { useSelector, useDispatch } from 'react-redux';
-import { isLoginFalse } from './TodoStore';
-
-const Navbar = styled.div`
-  background-color: #546e7a;
-  padding: 8px 12px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-  width: 100%;
-  a {
-    text-decoration: none;
-    color: white;
-    border-radius: 8px;
-    / &:hover {
-      background-color: #607d8b;
-    }
-    &:active {
-      background-color: #455a64;
-    }
-  }
-`;
-
-const NavLogo = styled.div`
-  button {
-    font-size: 1.5vh;
-    font-weight: 600;
-  }
-`;
-const NavMenu = styled.div`
-  display: flex;
-  flex-direction: row;
-  button {
-    font-size: 1vh;
-  }
-`;
+import { isLoginFalse } from '../../store/isLogin';
 
 function TodoNav() {
   const isLogin = useSelector((state) => state.isLogin);
@@ -51,16 +15,16 @@ function TodoNav() {
 
   return (
     <>
-      <Navbar>
-        <NavLogo>
+      <S.Navbar>
+        <S.NavLogo>
           <Link to="/">
             <Button color="inherit">
-              <TfiWrite style={{ fontSize: '12px', marginRight: '3px' }} />
+              <TfiWrite style={{ fontSize: '18px', marginRight: '8px' }} />
               ToDo-List
             </Button>
           </Link>
-        </NavLogo>
-        <NavMenu>
+        </S.NavLogo>
+        <S.NavMenu>
           {isLogin ? (
             <>
               <Link to="/mypage">
@@ -80,8 +44,8 @@ function TodoNav() {
               </Link>
             </>
           )}
-        </NavMenu>
-      </Navbar>
+        </S.NavMenu>
+      </S.Navbar>
     </>
   );
 }

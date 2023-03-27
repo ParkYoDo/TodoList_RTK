@@ -1,61 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
+import * as S from './TodoSignUpStyle';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { userAdd } from '../components/TodoStore';
-
-const DarkBackground = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LoginBlock = styled.div`
-  width: 70%;
-  max-width: 700px;
-  padding: 30px;
-
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  h1 {
-    font-size: 4vw;
-  }
-
-  Button {
-    margin: 1vw;
-    padding: 1vw;
-    margin-top: 2vw;
-    font-size: 1.5vw;
-  }
-`;
-
-const Input = styled.input`
-  margin: 10px;
-  padding: 1vw;
-  width: 100%;
-
-  text-align: center;
-  font-size: 1vw;
-  border-radius: 5px;
-  border: 2px solid skyblue;
-`;
-
-const RowBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+import { userAdd } from '../../store/users';
 
 function TodoSignUp() {
   const users = useSelector((state) => state.users);
@@ -87,18 +35,14 @@ function TodoSignUp() {
     } else if (name === 'phone' && value.length === 13) {
       setInput({
         ...input,
-        [name]: value
-          .replace(/-/g, '')
-          .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'),
+        [name]: value.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'),
       });
     }
   };
 
   const onSignUp = (e) => {
-    const emailRegex =
-      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d~`!@#$%^&*()-_=+]{8,20}$/;
+    const emailRegex = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d~`!@#$%^&*()-_=+]{8,20}$/;
     const phoneRegex = /^[0-9\b -]{13}$/;
 
     if (!name) {
@@ -177,10 +121,10 @@ function TodoSignUp() {
 
   return (
     <>
-      <DarkBackground>
-        <LoginBlock>
+      <S.DarkBackground>
+        <S.LoginBlock>
           <h1>SIGN UP</h1>
-          <Input
+          <S.Input
             type="text"
             name="name"
             placeholder="Name (2글자 이상)"
@@ -189,7 +133,7 @@ function TodoSignUp() {
             onKeyDown={onKeyDown}
             ref={nameInput}
           />
-          <Input
+          <S.Input
             type="text"
             name="email"
             placeholder="E-Mail (abc@abc.abc)"
@@ -197,7 +141,7 @@ function TodoSignUp() {
             onChange={onChange}
             onKeyDown={onKeyDown}
           />
-          <Input
+          <S.Input
             type="password"
             name="password"
             placeholder="Password (영어,숫자 포함 8~20자)"
@@ -205,7 +149,7 @@ function TodoSignUp() {
             onChange={onChange}
             onKeyDown={onKeyDown}
           />
-          <Input
+          <S.Input
             type="password"
             name="checkPassword"
             placeholder="Confirm Password"
@@ -213,10 +157,8 @@ function TodoSignUp() {
             onChange={onChange}
             onKeyDown={onKeyDown}
           />
-          {checkPassword && !(password === checkPassword) && (
-            <span style={{ color: 'red' }}>Mismatched Password!</span>
-          )}
-          <Input
+          {checkPassword && !(password === checkPassword) && <span style={{ color: 'red' }}>Mismatched Password!</span>}
+          <S.Input
             type="text"
             name="phone"
             placeholder="Phone Number ( - 포함)"
@@ -225,26 +167,16 @@ function TodoSignUp() {
             onKeyDown={onKeyDown}
             maxLength="13"
           />
-          <RowBlock>
-            <Button
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={onSignUp}
-            >
+          <S.RowBlock>
+            <Button size="large" variant="contained" color="primary" onClick={onSignUp}>
               Confirm
             </Button>
-            <Button
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={onMoveHome}
-            >
+            <Button size="large" variant="contained" color="primary" onClick={onMoveHome}>
               Cancel
             </Button>
-          </RowBlock>
-        </LoginBlock>
-      </DarkBackground>
+          </S.RowBlock>
+        </S.LoginBlock>
+      </S.DarkBackground>
     </>
   );
 }
