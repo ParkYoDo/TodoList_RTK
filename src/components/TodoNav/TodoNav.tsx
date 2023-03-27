@@ -1,14 +1,15 @@
 import React from 'react';
-import * as S from './TodoNavStyle';
+import * as S from 'components/TodoNav/TodoNavStyle';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { TfiWrite } from 'react-icons/tfi';
 import { useSelector, useDispatch } from 'react-redux';
-import { isLoginFalse } from '../../store/isLogin';
+import { isLoginFalse } from 'store/isLogin';
+import { RootState } from 'store/store';
 
 function TodoNav() {
-  const isLogin = useSelector((state) => state.isLogin);
-  const loginUser = useSelector((state) => state.loginUser);
+  const isLogin = useSelector((state: RootState) => state.isLogin);
+  const loginUser = useSelector((state: RootState) => state.loginUser);
   const dispatch = useDispatch();
 
   const onLogout = () => dispatch(isLoginFalse());

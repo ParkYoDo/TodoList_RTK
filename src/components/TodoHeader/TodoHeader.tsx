@@ -1,11 +1,12 @@
 import React from 'react';
-import * as S from './TodoHeaderStyle';
+import * as S from 'components/TodoHeader/TodoHeaderStyle';
 import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function TodoHeader() {
-  const todos = useSelector((state) => state.todos);
-  const loginUser = useSelector((state) => state.loginUser);
-  const isLogin = useSelector((state) => state.isLogin);
+  const todos = useSelector((state: RootState) => state.todos);
+  const loginUser = useSelector((state: RootState) => state.loginUser);
+  const isLogin = useSelector((state: RootState) => state.isLogin);
 
   const today = new Date();
   const dateString = today.toLocaleDateString('ko-KR', {

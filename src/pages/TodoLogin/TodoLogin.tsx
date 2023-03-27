@@ -1,17 +1,18 @@
 import React, { useRef, useEffect, useState } from 'react';
-import * as S from './TodoLoginStyle';
+import * as S from 'pages/TodoLogin/TodoLoginStyle';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { isLoginTrue } from '../../store/isLogin';
-import { loginUserSet } from '../../store/loginUser';
+import { isLoginTrue } from 'store/isLogin';
+import { loginUserSet } from 'store/loginUser';
+import { RootState } from 'store/store';
 
 function TodoLogin() {
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const emailInput = useRef();
+  const emailInput = useRef() as React.RefObject<HTMLInputElement>;
 
   const [login, setLogin] = useState({
     loginEmail: '',
@@ -20,47 +21,44 @@ function TodoLogin() {
 
   const { loginEmail, loginPassword } = login;
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
 
-  const onLogin = (e) => {
+  const onLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     const findUser = users.find((user) => user.email === loginEmail && user.password === loginPassword);
+    e.preventDefault();
 
     if (!loginEmail) {
       alert('이메일을 입력하세요!');
-      e.preventDefatul();
     } else if (!loginPassword) {
       alert('패스워드를 입력하세요!');
-      e.preventDefatul();
-    } else if (findUser) {
-      alert(`${findUser.name}님, 환영합니다!`);
-      dispatch(isLoginTrue());
-      dispatch(loginUserSet({ ...findUser }));
-      navigate('/');
-    } else {
+    } else if (!findUser) {
       alert('id, password를 확인하세요!');
       setLogin({
         loginEmail: '',
         loginPassword: '',
       });
-      e.preventDefatul();
+    } else {
+      alert(`${findUser.name}님, 환영합니다!`);
+      dispatch(isLoginTrue());
+      dispatch(loginUserSet({ ...findUser }));
+      navigate('/');
     }
+  };
+
+  const onMoveHome = () => {
     navigate('/');
   };
 
-  const onMoveHome = (e) => {
-    navigate('/');
-  };
-
-  const onKeyDown = (e) => {
-    e.key === 'Enter' && onLogin();
-    e.keyCode === 27 && onMoveHome();
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => {
+    (e as React.KeyboardEvent<HTMLInputElement>).key === 'Enter' && onLogin(e as React.MouseEvent<HTMLButtonElement>);
+    (e as React.KeyboardEvent<HTMLInputElement>).keyCode === 27 && onMoveHome();
   };
 
   useEffect(() => {
-    emailInput.current.focus();
+    emailInput.current?.focus();
   }, []);
 
   return (

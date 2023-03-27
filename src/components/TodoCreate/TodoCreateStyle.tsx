@@ -22,7 +22,7 @@ export const InsertForm = styled.form`
   background-color: #f8f9fa;
 `;
 
-export const AddButton = styled.button`
+export const AddButton = styled.button<{ isLogin: boolean; open: boolean }>`
   background-color: #38d9a9;
   &:hover {
     background: #63e6be;

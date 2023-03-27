@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import * as S from './TodoCreateStyle';
+import * as S from 'components/TodoCreate/TodoCreateStyle';
 import { MdAdd } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
-import { todoCreate } from '../../store/todos';
+import { todoCreate } from 'store/todos';
+import { RootState } from 'store/store';
 
 function TodoCreate() {
-  const isLogin = useSelector((state) => state.isLogin);
-  const loginUser = useSelector((state) => state.loginUser);
+  const isLogin = useSelector((state: RootState) => state.isLogin);
+  const loginUser = useSelector((state: RootState) => state.loginUser);
+  const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
-  const nextTodoId = useRef(6);
-  const titleInput = useRef();
+  const nextTodoId = useRef(todos.length + 1);
+  const titleInput = useRef() as React.RefObject<HTMLInputElement>;
 
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState({
@@ -20,12 +22,12 @@ function TodoCreate() {
 
   const { title, content } = input;
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
 
-  const createTodo = (e) => {
+  const createTodo = (e: React.FormEvent<HTMLFormElement>) => {
     if (!title) {
       alert('title을 입력하세요!');
     } else if (!content) {
@@ -45,7 +47,7 @@ function TodoCreate() {
       });
       setOpen(false);
       nextTodoId.current += 1;
-      titleInput.current.focus();
+      titleInput.current?.focus();
     }
   };
 
@@ -53,14 +55,14 @@ function TodoCreate() {
     setOpen(!open);
   };
 
-  const onKeyDown = (e) => {
-    e.key === 'Enter' && createTodo();
-    e.keyCode === 27 && setOpen(false);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) => {
+    (e as React.KeyboardEvent<HTMLInputElement>).key === 'Enter' && createTodo(e as React.FormEvent<HTMLFormElement>);
+    (e as React.KeyboardEvent<HTMLInputElement>).keyCode === 27 && setOpen(false);
   };
 
   useEffect(() => {
     setInput({ title: '', content: '' });
-    open && titleInput.current.focus();
+    open && titleInput.current?.focus();
   }, [open]);
 
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import TodoNav from './components/TodoNav/TodoNav';
-import TodoHome from './pages/TodoHome/TodoHome';
-import TodoSignUp from './pages/TodoSignUp/TodoSignUp';
-import TodoLogin from './pages/TodoLogin/TodoLogin';
-import TodoMyPage from './pages/TodoMyPage/TodoMyPage';
+import TodoNav from 'components/TodoNav/TodoNav';
+import TodoHome from 'pages/TodoHome/TodoHome';
+import TodoSignUp from 'pages/TodoSignUp/TodoSignUp';
+import TodoLogin from 'pages/TodoLogin/TodoLogin';
+import TodoMyPage from 'pages/TodoMyPage/TodoMyPage';
 
 function App() {
   return (

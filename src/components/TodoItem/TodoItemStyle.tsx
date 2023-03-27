@@ -39,7 +39,7 @@ export const TodoItemBlock = styled.div`
   padding: 7px 0;
 `;
 
-export const PostIt = styled.div`
+export const PostIt = styled.div<{ done: boolean }>`
   background-color: #fef3bf;
   padding: 4px;
   border-radius: 12px;

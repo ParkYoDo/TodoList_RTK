@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const TodoListBlock = styled.div`
+export const TodoListBlock = styled.div<{ isLogin: boolean }>`
   padding: 12px 4px;
   overflow-y: auto;
   height: 100%;

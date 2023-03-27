@@ -1,13 +1,14 @@
 import React from 'react';
-import * as S from './TodoListStyle';
-import TodoItem from '../TodoItem/TodoItem';
+import * as S from 'components/TodoList/TodoListStyle';
+import TodoItem from 'components/TodoItem/TodoItem';
 import { Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 function TodoList() {
-  const todos = useSelector((state) => state.todos);
-  const isLogin = useSelector((state) => state.isLogin);
-  const loginUser = useSelector((state) => state.loginUser);
+  const todos = useSelector((state: RootState) => state.todos);
+  const isLogin = useSelector((state: RootState) => state.isLogin);
+  const loginUser = useSelector((state: RootState) => state.loginUser);
 
   return (
     <S.TodoListBlock isLogin={isLogin}>

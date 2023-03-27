@@ -1,10 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
-import users from './users';
-import isLogin from './isLogin';
-import loginUser from './loginUser';
-import todos from './todos';
+import users from 'store/users';
+import isLogin from 'store/isLogin';
+import loginUser from 'store/loginUser';
+import todos from 'store/todos';
 
 const reducers = combineReducers({
   users: users.reducer,
@@ -28,4 +28,4 @@ export default configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
-// export type RootState = ReturnType<typeof reducers>;
+export type RootState = ReturnType<typeof reducers>;

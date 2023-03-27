@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
+import * as S from 'components/TodoModifyUserModal/TodoModifyUserModalStyle';
 import Modal from 'react-bootstrap/Modal';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginUserModify } from '../../store/loginUser';
-import { todoModify } from '../../store/todos';
-import { userModify } from '../../store/users';
+import { loginUserModify } from 'store/loginUser';
+import { todoModify } from 'store/todos';
+import { userModify } from 'store/users';
+import { RootState } from 'store/store';
 
-function TodoModifyUserModal({ show, setShow }) {
-  const users = useSelector((state) => state.users);
-  const loginUser = useSelector((state) => state.loginUser);
+interface Props {
+  show: {
+    open: boolean;
+    name: string;
+  };
+  setShow: React.Dispatch<
+    React.SetStateAction<{
+      open: boolean;
+      name: string;
+    }>
+  >;
+}
+
+function TodoModifyUserModal({ show, setShow }: Props) {
+  const users = useSelector((state: RootState) => state.users);
+  const loginUser = useSelector((state: RootState) => state.loginUser);
   const dispatch = useDispatch();
 
   const [input, setInput] = useState('');
@@ -18,7 +33,7 @@ function TodoModifyUserModal({ show, setShow }) {
     setInput('');
   };
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const { name } = show;
     setInput(value);
@@ -29,10 +44,11 @@ function TodoModifyUserModal({ show, setShow }) {
     }
   };
 
-  const modifyUser = (e) => {
+  const modifyUser = (e: React.FormEvent<HTMLFormElement>) => {
     const emailRegex = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d~`!@#$%^&*()-_=+]{8,20}$/;
     const phoneRegex = /^[0-9\b -]{13}$/;
+    e.preventDefault();
 
     if (!input) {
       alert(`${show.name}을 입력하세요!`);
@@ -58,11 +74,6 @@ function TodoModifyUserModal({ show, setShow }) {
     }
   };
 
-  const onKeyDown = (e) => {
-    e.keyCode === 13 && modifyUser();
-    e.keyCode === 27 && closeModal();
-  };
-
   return (
     <>
       <Modal show={show.open} onHide={closeModal} centered>
@@ -71,26 +82,27 @@ function TodoModifyUserModal({ show, setShow }) {
             변경 할 {show.name} 입력하세요!
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form.Control
-            type="text"
-            placeholder="Enter Name"
-            autoFocus
-            value={input}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            style={{ fontSize: '2vh' }}
-            maxLength={show.name === 'phone' ? '13' : '30'}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button style={{ fontSize: '2vh' }} variant="secondary" onClick={closeModal}>
-            Close
-          </Button>
-          <Button style={{ fontSize: '2vh' }} variant="primary" onClick={modifyUser}>
-            Save Change
-          </Button>
-        </Modal.Footer>
+        <S.ModifyForm onSubmit={modifyUser}>
+          <Modal.Body>
+            <S.ModifyInput
+              type="text"
+              placeholder="Enter Name"
+              autoFocus
+              value={input}
+              onChange={onChange}
+              style={{ fontSize: '2vh' }}
+              maxLength={show.name === 'phone' ? 13 : 30}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="button" style={{ fontSize: '2vh' }} variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+            <Button type="submit" style={{ fontSize: '2vh' }} variant="primary">
+              Save Change
+            </Button>
+          </Modal.Footer>
+        </S.ModifyForm>
       </Modal>
     </>
   );
