@@ -15,39 +15,37 @@ function TodoNav() {
   const onLogout = () => dispatch(isLoginFalse());
 
   return (
-    <>
-      <S.Navbar>
-        <S.NavLogo>
-          <Link to="/">
-            <Button color="inherit">
-              <TfiWrite style={{ fontSize: '18px', marginRight: '8px' }} />
-              ToDo-List
-            </Button>
-          </Link>
-        </S.NavLogo>
-        <S.NavMenu>
-          {isLogin ? (
-            <>
-              <Link to="/mypage">
-                <Button color="inherit">{loginUser.name}</Button>
-              </Link>
-              <Link to="/" onClick={onLogout}>
-                <Button color="inherit">Logout</Button>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/login">
-                <Button color="inherit">Login</Button>
-              </Link>
-              <Link to="/signup">
-                <Button color="inherit">Sign up</Button>
-              </Link>
-            </>
-          )}
-        </S.NavMenu>
-      </S.Navbar>
-    </>
+    <S.Navbar>
+      <S.NavLogo>
+        <Link to="/">
+          <Button color="inherit">
+            <TfiWrite style={{ fontSize: '18px', marginRight: '8px' }} />
+            ToDo-List
+          </Button>
+        </Link>
+      </S.NavLogo>
+      <S.NavMenu>
+        {isLogin ? (
+          <>
+            <Link to="/mypage">
+              <Button color="inherit">{loginUser.name}</Button>
+            </Link>
+            <Link to="/" onClick={onLogout}>
+              <Button color="inherit">Logout</Button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <Button color="inherit">Login</Button>
+            </Link>
+            <Link to="/signup">
+              <Button color="inherit">Sign up</Button>
+            </Link>
+          </>
+        )}
+      </S.NavMenu>
+    </S.Navbar>
   );
 }
 

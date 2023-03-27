@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import * as S from 'pages/TodoMyPage/TodoMyPageStyle';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import TodoModifyUserModal from 'components/TodoModifyUserModal/TodoModifyUserModal';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
+import * as S from 'pages/TodoMyPage/TodoMyPageStyle';
 
 function TodoMyPage() {
   const loginUser = useSelector((state: RootState) => state.loginUser);
@@ -12,7 +12,7 @@ function TodoMyPage() {
   const [show, setShow] = useState({ open: false, name: '' });
 
   const openModal = (e: React.MouseEvent<HTMLElement>) => {
-    setShow({ open: true, name: e.currentTarget.dataset.id! });
+    setShow({ open: true, name: e.currentTarget.dataset.id as string });
   };
 
   return (

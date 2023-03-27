@@ -18,26 +18,23 @@ function TodoHeader() {
     weekday: 'long',
   });
   return (
-    <>
-      <S.TodoHeadBlock>
-        <h1>{dateString}</h1>
-        <div className="flex-row">
-          {isLogin ? (
-            <div className="tasks-left">
-              할 일{' '}
-              {todos.filter((todo) => todo.writer === loginUser.name).filter((todo) => todo.done === false).length}개
-              남음
-            </div>
-          ) : (
-            <div className="tasks-left" style={{ color: 'red' }}>
-              로그인하세요!
-            </div>
-          )}
+    <S.TodoHeadBlock>
+      <h1>{dateString}</h1>
+      <div className="flex-row">
+        {isLogin ? (
+          <div className="tasks-left">
+            할 일 {todos.filter((todo) => todo.writer === loginUser.name).filter((todo) => todo.done === false).length}
+            개 남음
+          </div>
+        ) : (
+          <div className="tasks-left" style={{ color: 'red' }}>
+            로그인하세요!
+          </div>
+        )}
 
-          <div className="day">{dayName}</div>
-        </div>
-      </S.TodoHeadBlock>
-    </>
+        <div className="day">{dayName}</div>
+      </div>
+    </S.TodoHeadBlock>
   );
 }
 

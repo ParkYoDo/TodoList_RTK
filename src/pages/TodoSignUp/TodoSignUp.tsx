@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import * as S from 'pages/TodoSignUp/TodoSignUpStyle';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { userAdd } from 'store/users';
 import { RootState } from 'store/store';
+import * as S from 'pages/TodoSignUp/TodoSignUpStyle';
 
 function TodoSignUp() {
   const users = useSelector((state: RootState) => state.users);
@@ -109,64 +109,62 @@ function TodoSignUp() {
   }, []);
 
   return (
-    <>
-      <S.DarkBackground>
-        <S.LoginBlock>
-          <h1>SIGN UP</h1>
-          <S.Input
-            type="text"
-            name="name"
-            placeholder="Name (2글자 이상)"
-            value={name}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            ref={nameInput}
-          />
-          <S.Input
-            type="text"
-            name="email"
-            placeholder="E-Mail (abc@abc.abc)"
-            value={email}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-          />
-          <S.Input
-            type="password"
-            name="password"
-            placeholder="Password (영어,숫자 필수포함 8~20자)"
-            value={password}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-          />
-          <S.Input
-            type="password"
-            name="checkPassword"
-            placeholder="Confirm Password"
-            value={checkPassword}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-          />
-          {checkPassword && !(password === checkPassword) && <span style={{ color: 'red' }}>Mismatched Password!</span>}
-          <S.Input
-            type="text"
-            name="phone"
-            placeholder="Phone Number ( - 포함)"
-            value={phone}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            maxLength={13}
-          />
-          <S.RowBlock>
-            <Button size="large" variant="contained" color="primary" onClick={onSignUp}>
-              Confirm
-            </Button>
-            <Button size="large" variant="contained" color="primary" onClick={onMoveHome}>
-              Cancel
-            </Button>
-          </S.RowBlock>
-        </S.LoginBlock>
-      </S.DarkBackground>
-    </>
+    <S.DarkBackground>
+      <S.LoginBlock>
+        <h1>SIGN UP</h1>
+        <S.Input
+          type="text"
+          name="name"
+          placeholder="Name (2글자 이상)"
+          value={name}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          ref={nameInput}
+        />
+        <S.Input
+          type="text"
+          name="email"
+          placeholder="E-Mail (abc@abc.abc)"
+          value={email}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+        <S.Input
+          type="password"
+          name="password"
+          placeholder="Password (영어,숫자 필수포함 8~20자)"
+          value={password}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+        <S.Input
+          type="password"
+          name="checkPassword"
+          placeholder="Confirm Password"
+          value={checkPassword}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+        {checkPassword && !(password === checkPassword) && <span style={{ color: 'red' }}>Mismatched Password!</span>}
+        <S.Input
+          type="text"
+          name="phone"
+          placeholder="Phone Number ( - 포함)"
+          value={phone}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          maxLength={13}
+        />
+        <S.RowBlock>
+          <Button size="large" variant="contained" color="primary" onClick={onSignUp}>
+            Confirm
+          </Button>
+          <Button size="large" variant="contained" color="primary" onClick={onMoveHome}>
+            Cancel
+          </Button>
+        </S.RowBlock>
+      </S.LoginBlock>
+    </S.DarkBackground>
   );
 }
 

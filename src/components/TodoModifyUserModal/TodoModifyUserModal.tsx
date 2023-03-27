@@ -67,44 +67,42 @@ function TodoModifyUserModal({ show, setShow }: Props) {
     } else if (show.name === 'phone' && users.find((user) => user.phone === input)) {
       alert('이미 사용 중인 휴대폰 번호입니다!');
     } else {
-      show.name === 'name' && dispatch(todoModify({ writer: input, loginUser: loginUser }));
-      dispatch(userModify({ key: show.name, value: input, loginUser: loginUser }));
+      show.name === 'name' && dispatch(todoModify({ writer: input, loginUser }));
+      dispatch(userModify({ key: show.name, value: input, loginUser }));
       dispatch(loginUserModify({ key: show.name, value: input }));
       closeModal();
     }
   };
 
   return (
-    <>
-      <Modal show={show.open} onHide={closeModal} centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter" style={{ fontSize: '2.5vh' }}>
-            변경 할 {show.name} 입력하세요!
-          </Modal.Title>
-        </Modal.Header>
-        <S.ModifyForm onSubmit={modifyUser}>
-          <Modal.Body>
-            <S.ModifyInput
-              type="text"
-              placeholder="Enter Name"
-              autoFocus
-              value={input}
-              onChange={onChange}
-              style={{ fontSize: '2vh' }}
-              maxLength={show.name === 'phone' ? 13 : 30}
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button type="button" style={{ fontSize: '2vh' }} variant="secondary" onClick={closeModal}>
-              Close
-            </Button>
-            <Button type="submit" style={{ fontSize: '2vh' }} variant="primary">
-              Save Change
-            </Button>
-          </Modal.Footer>
-        </S.ModifyForm>
-      </Modal>
-    </>
+    <Modal show={show.open} onHide={closeModal} centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter" style={{ fontSize: '2.5vh' }}>
+          변경 할 {show.name} 입력하세요!
+        </Modal.Title>
+      </Modal.Header>
+      <S.ModifyForm onSubmit={modifyUser}>
+        <Modal.Body>
+          <S.ModifyInput
+            type="text"
+            placeholder="Enter Name"
+            autoFocus
+            value={input}
+            onChange={onChange}
+            style={{ fontSize: '2vh' }}
+            maxLength={show.name === 'phone' ? 13 : 30}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="button" style={{ fontSize: '2vh' }} variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+          <Button type="submit" style={{ fontSize: '2vh' }} variant="primary">
+            Save Change
+          </Button>
+        </Modal.Footer>
+      </S.ModifyForm>
+    </Modal>
   );
 }
 

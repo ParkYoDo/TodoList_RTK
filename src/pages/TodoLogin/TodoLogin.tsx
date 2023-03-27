@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
-import * as S from 'pages/TodoLogin/TodoLoginStyle';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { isLoginTrue } from 'store/isLogin';
 import { loginUserSet } from 'store/loginUser';
 import { RootState } from 'store/store';
+import * as S from 'pages/TodoLogin/TodoLoginStyle';
 
 function TodoLogin() {
   const users = useSelector((state: RootState) => state.users);
@@ -62,39 +62,37 @@ function TodoLogin() {
   }, []);
 
   return (
-    <>
-      <S.DarkBackground>
-        <S.LoginBlock>
-          <h1>Login</h1>
-          <S.Input
-            type="text"
-            name="loginEmail"
-            placeholder="E-Mail"
-            value={loginEmail}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            ref={emailInput}
-          />
-          <S.Input
-            type="password"
-            name="loginPassword"
-            placeholder="Password"
-            value={loginPassword}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-          />
+    <S.DarkBackground>
+      <S.LoginBlock>
+        <h1>Login</h1>
+        <S.Input
+          type="text"
+          name="loginEmail"
+          placeholder="E-Mail"
+          value={loginEmail}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          ref={emailInput}
+        />
+        <S.Input
+          type="password"
+          name="loginPassword"
+          placeholder="Password"
+          value={loginPassword}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
 
-          <S.RowBlock>
-            <Button size="large" variant="contained" color="primary" onClick={onLogin}>
-              Login
-            </Button>
-            <Button size="large" variant="contained" color="primary" onClick={onMoveHome}>
-              Cancel
-            </Button>
-          </S.RowBlock>
-        </S.LoginBlock>
-      </S.DarkBackground>
-    </>
+        <S.RowBlock>
+          <Button size="large" variant="contained" color="primary" onClick={onLogin}>
+            Login
+          </Button>
+          <Button size="large" variant="contained" color="primary" onClick={onMoveHome}>
+            Cancel
+          </Button>
+        </S.RowBlock>
+      </S.LoginBlock>
+    </S.DarkBackground>
   );
 }
 

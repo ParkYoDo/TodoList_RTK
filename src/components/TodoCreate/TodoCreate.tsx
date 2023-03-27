@@ -27,7 +27,7 @@ function TodoCreate() {
     setInput({ ...input, [name]: value });
   };
 
-  const createTodo = (e: React.FormEvent<HTMLFormElement>) => {
+  const createTodo = () => {
     if (!title) {
       alert('title을 입력하세요!');
     } else if (!content) {
@@ -55,9 +55,9 @@ function TodoCreate() {
     setOpen(!open);
   };
 
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) => {
-    (e as React.KeyboardEvent<HTMLInputElement>).key === 'Enter' && createTodo(e as React.FormEvent<HTMLFormElement>);
-    (e as React.KeyboardEvent<HTMLInputElement>).keyCode === 27 && setOpen(false);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    e.key === 'Enter' && createTodo();
+    e.keyCode === 27 && setOpen(false);
   };
 
   useEffect(() => {

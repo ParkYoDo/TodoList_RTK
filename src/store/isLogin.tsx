@@ -6,11 +6,11 @@ const isLogin = createSlice({
   name: 'isLogin',
   initialState,
   reducers: {
-    isLoginTrue(state) {
-      return (state = true);
+    isLoginTrue() {
+      return true;
     },
-    isLoginFalse(state) {
-      return (state = false);
+    isLoginFalse() {
+      return false;
     },
   },
 });

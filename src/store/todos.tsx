@@ -15,10 +15,10 @@ const todos = createSlice({
   initialState,
   reducers: {
     todoRemove(state, action) {
-      return state.filter((todo) => todo.id !== parseInt(action.payload));
+      return state.filter((todo) => todo.id !== Math.floor(action.payload));
     },
     todoToggle(state, action) {
-      return state.map((todo) => (todo.id === parseInt(action.payload) ? { ...todo, done: !todo.done } : todo));
+      return state.map((todo) => (todo.id === Math.floor(action.payload) ? { ...todo, done: !todo.done } : todo));
     },
     todoCreate(state, action) {
       return [...state, action.payload];
