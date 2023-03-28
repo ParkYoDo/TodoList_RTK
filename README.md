@@ -104,7 +104,7 @@
 <img width="100%" src="https://user-images.githubusercontent.com/31908501/228319741-f4c7b06c-3bea-4771-82f5-2c42152ebdd8.gif"/>
 
 - 완료한 Todo의 상태를 변경
-- 완료하지 않은 Todo의 개수
+- 완료하지 않은 Todo의 개수 표시
 
 ### 7. Remove Todo
 
