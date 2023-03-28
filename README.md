@@ -1,5 +1,5 @@
 <h1 align="center">📝 Todo-List</h1>
-<h3 align="center">https://todolist-rtk.netlify.app/</h3>
+<h3 align="center">https://todolist-rtk.netlify.app</h3>
 <br>
 
 ## 🕐 Develop period
