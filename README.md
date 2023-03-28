@@ -93,7 +93,7 @@
 
 - 로그아웃 기능 구현
 
-### 5. Create Todo
+### 5. Register Todo
 
 <img width="100%" src="https://user-images.githubusercontent.com/31908501/228319736-59425f1f-1724-4589-86dd-f55c554a4c64.gif"/>
 
